@@ -1,5 +1,2 @@
-MY_USERNAME = "drecramx"
-
-spotify_token = ""
-
-
+s_token = 'BQDUiuwSL_HWSLNiLcqD9dgrgE1WUEM16WPAozF91g3s5NAAVk2WwF_6PDofA2iaO2Dc7Ic8GrDOUxko6c1bflRPgxodVq_uVoC7ObVMSwJumIbE8CEzecu1miNndmEkry6joC8hP8sQk5cvIfCWw-pdpWGyJ6mi2vnZq68SEVh7fppShU_fPVvnEw4Z2v9AGIulcx0XpyPYLC4ylJs3uGzOmkhbLLgLDJiXYUWcwwu2gwpt06y7tU8aGHPeoGJTpHzbi5Bp2J8sUPY8Je0hMA'
+user_id = 'drecramx'
