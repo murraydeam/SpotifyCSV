@@ -25,18 +25,11 @@ class PlaylistCSV:
                                     "Accept": "application/json",
                                     "Content-Type": "application/json",
                                     "Authorization": f"Bearer {s_token}"
-                                }
-                                )
-
+                                })
         pass
 
     def get_playlist(self):  # Focus a Specific Playlist
         pass
 
-
     def song_csv(self):  # Add the song to a CSV
         pass
-
-
-
-
