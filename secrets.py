@@ -1,2 +1,5 @@
-s_token = 'BQDUiuwSL_HWSLNiLcqD9dgrgE1WUEM16WPAozF91g3s5NAAVk2WwF_6PDofA2iaO2Dc7Ic8GrDOUxko6c1bflRPgxodVq_uVoC7ObVMSwJumIbE8CEzecu1miNndmEkry6joC8hP8sQk5cvIfCWw-pdpWGyJ6mi2vnZq68SEVh7fppShU_fPVvnEw4Z2v9AGIulcx0XpyPYLC4ylJs3uGzOmkhbLLgLDJiXYUWcwwu2gwpt06y7tU8aGHPeoGJTpHzbi5Bp2J8sUPY8Je0hMA'
 user_id = 'drecramx'
+
+client_id = '9f5c370093cb4309899ae6ece658faeb'
+client_secret = '2d26e9eaedc043c9b019927446e3dd53'
+playlistID = '0dc6pAFmZfOCyQ6u0pC91Y'
