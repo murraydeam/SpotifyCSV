@@ -16,9 +16,10 @@ import json
 import base64
 from secrets import *
 
+
 class PlaylistCSV:
-    def __init__(self, token=None):
-        self.token = token
+    def __init__(self):
+        self.token = self.auth_token
 
     def auth_token(self):  # client auth for application
         # URL where the post request will be sent
@@ -46,11 +47,17 @@ class PlaylistCSV:
         r = requests.post(url, headers=headers, data=data)
 
         # Get and store the token
-        self.token = r.json()['access_token']
+        token = r.json()['access_token']
+        return token
 
     def sign_in(self):  # sign into spotify.
         # Get requests
+        token = self.token
+        params
         url = 'https://accounts.spotify.com/authorize'
+        r = requests.get(url, params=params)
+        print(token)
+
 
     def show_playlist(self):  # Show the user all their playlists.
         pass
@@ -60,3 +67,4 @@ class PlaylistCSV:
 
     def songs_csv(self):  # Add Song to a CSV
         pass
+
