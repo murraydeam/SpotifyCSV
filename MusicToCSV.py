@@ -1,3 +1,6 @@
+import pprint
+import ijson
+
 import requests
 import base64
 import json
@@ -16,6 +19,7 @@ base64Message = base64Bytes.decode('ascii')
 
 
 headers['Authorization'] = f"Basic {base64Message}"
+
 data['grant_type'] = "client_credentials"
 
 r = requests.post(url, headers=headers, data=data)
@@ -31,5 +35,16 @@ headers = {
 }
 
 res = requests.get(url=playlistUrl, headers=headers)
+playlist_data = json.dumps(res.json())
+playlist_data = json.loads(playlist_data)
 
-# print(json.dumps(res.json(), indent=2))
+"""
+for artist in playlist_data['tracks']['items']:
+    print(artist['track'])
+
+"""
+
+for artist in playlist_data['tracks']['items']:
+    print(artist['track']['name'])
+
+

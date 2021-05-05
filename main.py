@@ -49,15 +49,15 @@ class PlaylistCSV:
         # Get and store the token
         token = r.json()['access_token']
         return token
+    auth_token(self)
 
     def sign_in(self):  # sign into spotify.
         # Get requests
         token = self.token
-        params
+        params = {}
         url = 'https://accounts.spotify.com/authorize'
         r = requests.get(url, params=params)
         print(token)
-
 
     def show_playlist(self):  # Show the user all their playlists.
         pass
