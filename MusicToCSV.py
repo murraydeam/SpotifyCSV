@@ -37,14 +37,21 @@ headers = {
 res = requests.get(url=playlistUrl, headers=headers)
 playlist_data = json.dumps(res.json())
 playlist_data = json.loads(playlist_data)
+"""
+for key in playlist_data['tracks'].keys():
+    print(key)
+"""
+# del playlist_data['tracks']['items']
+
+for album in playlist_data['tracks']['items']:
+    for artist in album['track']['album']['artists']:
+        print(album['track']['name'] + ' : ' + artist['name'])
+
+
 
 """
-for artist in playlist_data['tracks']['items']:
-    print(artist['track'])
-
-"""
-
 for artist in playlist_data['tracks']['items']:
     print(artist['track']['name'])
+"""
 
 
