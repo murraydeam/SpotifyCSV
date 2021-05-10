@@ -1,6 +1,6 @@
 import pprint
 import ijson
-
+import csv
 import requests
 import base64
 import json
@@ -41,17 +41,24 @@ playlist_data = json.loads(playlist_data)
 for key in playlist_data['tracks'].keys():
     print(key)
 """
-# del playlist_data['tracks']['items']
+fields = ['Title', 'Artist', 'Album']
+reader = csv.reader(f, delimiter=',')
+    for album in playlist_data['tracks']['items']:
+        for artist in album['track']['album']['artists']:
+            #  Get data from the spotify Json (Song name, Artist, Album Name)
+            albumName = album['track']['album']['name']
+            songName = album['track']['name']
+            artistName = artist['name']
 
-for album in playlist_data['tracks']['items']:
-    for artist in album['track']['album']['artists']:
-        print(album['track']['name'] + ' : ' + artist['name'])
+            #  print(f'\n{songName} by {artistName}\nAlbum : {albumName}')
 
+            datas = songName + ', ' + artistName + ', ' + albumName
+            csvwriter.writerow(datas)
+            print((datas))
 
 
 """
 for artist in playlist_data['tracks']['items']:
     print(artist['track']['name'])
 """
-
 
