@@ -46,21 +46,20 @@ for key in playlist_data['tracks'].keys():
     print(key)
 """
 fields = ['Title', 'Artist', 'Album']
-reader = csv.reader(f, delimiter=',')
-    for album in playlist_data['tracks']['items']:
-        for artist in album['track']['album']['artists']:
-            #  Get data from the spotify Json (Song name, Artist, Album Name)
-            albumName = album['track']['album']['name']
-            songName = album['track']['name']
-            artistName = artist['name']
 
-            #  print(f'\n{songName} by {artistName}\nAlbum : {albumName}')
+for album in playlist_data['tracks']['items']:
+    for artist in album['track']['album']['artists']:
+        #  Get data from the spotify Json (Song name, Artist, Album Name)
+        albumName = album['track']['album']['name']
+        songName = album['track']['name']
+        artistName = artist['name']
 
-            datas = songName + ', ' + artistName + ', ' + albumName
-            csvwriter.writerow(datas)
-            print((datas))
+        #  print(f'\n{songName} by {artistName}\nAlbum : {albumName}')
 
-
+        datas = 'Song Name: ' + songName + '\nArtist Name: ' + artistName + '\nAlbum Name: ' + albumName
+        print('\n' + datas)
+with open(playlistID + '.csv', 'w', newline='') as csvfile:
+    songwriter = csv.writer(csvfile, delimiter=' ')
 """
 for artist in playlist_data['tracks']['items']:
     print(artist['track']['name'])
