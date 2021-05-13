@@ -59,10 +59,10 @@ for album in playlist_data['tracks']['items']:
         # The above will also remove any Comma's from the data for simple csv parsing.
         # Append 'trackData' to list 'allData'
         allData.append(trackData)
-
-print(allData)
+allDataClean = ''.join(allData).replace('""', '')
+print((allDataClean))
 with open(playlistID + '.csv', 'w', newline='') as csvfile:
-    songwriter = csv.writer(csvfile, delimiter=' ')
+    songwriter = csv.writer(csvfile, delimiter=',')
     songwriter.writerow(allData)
 
 """
