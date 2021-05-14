@@ -22,6 +22,8 @@ class PlaylistCSV:
     def __init__(self):
         self.allData = []
         self.token = self.auth_token
+        self.offset = 0
+        self.count = 0
 
     def auth_token(self):  # client auth for application
         # URL where the post request will be sent
@@ -51,15 +53,6 @@ class PlaylistCSV:
         # Get and store the token
         self.token = r.json()['access_token']
         return self.token
-    """
-    def sign_in(self):  # sign into spotify.
-        # Get requests
-        token = self.token
-        params = {}
-        url = 'https://accounts.spotify.com/authorize'
-        r = requests.get(url, params=params)
-        print(self.token)
-    """
 
     def show_playlist(self):  # Show the user all their playlists.
         # Step 2 - Use Access Token to call playlist endpoint
@@ -68,12 +61,13 @@ class PlaylistCSV:
         playlistId = input('Please enter you playlist ID: ')
 
         if playlistId == '':
-            print('\n\nWe will use the DEMO Playlist ID...\nShoot an Email to Deandremurray22@gmail.com '
+            print('\nShoot an Email to dmurray@brinkshome.com '
                   'if you have any questions.')
             playlistId = '0dc6pAFmZfOCyQ6u0pC91Y'
         else:
             playlistId = playlistId
-        playlistUrl = f"https://api.spotify.com/v1/playlists/{playlistId}"
+        playlistUrl = f"https://api.spotify.com/v1/playlists/{playlistId}" \
+                      f"/tracks?market=us&limit=100&offset={self.offset}"
         headers = {
             "Authorization": "Bearer " + str(self.token)
         }
@@ -83,7 +77,7 @@ class PlaylistCSV:
 
         # Define Var as a list
 
-        for album in playlist_data['tracks']['items']:
+        for album in playlist_data['items']:
             for artist in album['track']['album']['artists']:
                 #  Get data from the spotify Json (Song name, Artist, Album Name)
                 albumName = album['track']['name'].replace(',', '')
@@ -93,6 +87,8 @@ class PlaylistCSV:
                 # The above will also remove any Comma's from the data for simple csv parsing.
                 # Append 'trackData' to list 'allData'
                 self.allData.append(trackData)
+                self.count += 1
+
         return self.allData
 
     @staticmethod
