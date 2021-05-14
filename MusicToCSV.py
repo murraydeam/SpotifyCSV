@@ -1,5 +1,4 @@
 import pprint
-import json
 import csv
 import requests
 import base64
