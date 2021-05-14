@@ -64,7 +64,15 @@ class PlaylistCSV:
     def show_playlist(self):  # Show the user all their playlists.
         # Step 2 - Use Access Token to call playlist endpoint
 
-        playlistId = "0dc6pAFmZfOCyQ6u0pC91Y"  # **Streamline for ease of use**
+        # playlistId = "0dc6pAFmZfOCyQ6u0pC91Y"  # **Streamline for ease of use**
+        playlistId = input('Please enter you playlist ID: ')
+
+        if playlistId == '':
+            print('\n\nWe will use the DEMO Playlist ID...\nShoot an Email to Deandremurray22@gmail.com '
+                  'if you have any questions.')
+            playlistId = '0dc6pAFmZfOCyQ6u0pC91Y'
+        else:
+            playlistId = playlistId
         playlistUrl = f"https://api.spotify.com/v1/playlists/{playlistId}"
         headers = {
             "Authorization": "Bearer " + str(self.token)
