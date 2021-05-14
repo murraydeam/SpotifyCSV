@@ -15,10 +15,12 @@ import requests
 import json
 import base64
 from secrets import *
+import csv
 
 
 class PlaylistCSV:
     def __init__(self):
+        self.allData = []
         self.token = self.auth_token
 
     def auth_token(self):  # client auth for application
@@ -47,24 +49,56 @@ class PlaylistCSV:
         r = requests.post(url, headers=headers, data=data)
 
         # Get and store the token
-        token = r.json()['access_token']
-        return token
-    auth_token(self)
-
+        self.token = r.json()['access_token']
+        return self.token
+    """
     def sign_in(self):  # sign into spotify.
         # Get requests
         token = self.token
         params = {}
         url = 'https://accounts.spotify.com/authorize'
         r = requests.get(url, params=params)
-        print(token)
+        print(self.token)
+    """
 
     def show_playlist(self):  # Show the user all their playlists.
-        pass
+        # Step 2 - Use Access Token to call playlist endpoint
 
-    def get_songs(self):  # Retrieve Songs from playlist selected
-        pass
+        playlistId = "0dc6pAFmZfOCyQ6u0pC91Y"  # **Streamline for ease of use**
+        playlistUrl = f"https://api.spotify.com/v1/playlists/{playlistId}"
+        headers = {
+            "Authorization": "Bearer " + str(self.token)
+        }
+        res = requests.get(url=playlistUrl, headers=headers)
+        playlist_data = json.dumps(res.json())
+        playlist_data = json.loads(playlist_data)
 
-    def songs_csv(self):  # Add Song to a CSV
-        pass
+        # Define Var as a list
 
+        for album in playlist_data['tracks']['items']:
+            for artist in album['track']['album']['artists']:
+                #  Get data from the spotify Json (Song name, Artist, Album Name)
+                albumName = album['track']['name'].replace(',', '')
+                trackName = album['track']['album']['name'].replace(',', '')
+                artistName = artist['name'].replace(',', '')
+                trackData = [albumName, trackName, artistName]
+                # The above will also remove any Comma's from the data for simple csv parsing.
+                # Append 'trackData' to list 'allData'
+                self.allData.append(trackData)
+        return self.allData
+
+    @staticmethod
+    def songs_csv():  # Add Song to a CSV
+        allData = ans.show_playlist()
+        fields = ['Title', 'Artist', 'Album']
+
+        with open(playlistID + '.csv', 'w', newline='') as csvFile:
+            write = csv.writer(csvFile)
+
+            write.writerow(fields)
+            write.writerows(allData)
+
+
+ans = PlaylistCSV()
+link_token = ans.auth_token()
+ans.songs_csv()
