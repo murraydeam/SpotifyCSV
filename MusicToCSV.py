@@ -1,5 +1,5 @@
 import pprint
-import ijson
+import json
 import csv
 import requests
 import base64
@@ -8,7 +8,7 @@ from secrets import *
 
 # Step 1 - Authorization
 """
-Line 14 -
+Context
 """
 
 url = "https://accounts.spotify.com/api/token"
@@ -31,7 +31,7 @@ token = r.json()['access_token']
 
 # Step 2 - Use Access Token to call playlist endpoint
 
-playlistId = "0dc6pAFmZfOCyQ6u0pC91Y"
+playlistId = "0dc6pAFmZfOCyQ6u0pC91Y"  # **Streamline for ease of use**
 playlistUrl = f"https://api.spotify.com/v1/playlists/{playlistId}"
 headers = {
     "Authorization": "Bearer " + token
@@ -55,15 +55,19 @@ for album in playlist_data['tracks']['items']:
         albumName = album['track']['name'].replace(',', '')
         trackName = album['track']['album']['name'].replace(',', '')
         artistName = artist['name'].replace(',', '')
-        trackData = f'{albumName}, {trackName}, {artistName}'
+        trackData = [albumName, trackName, artistName]
         # The above will also remove any Comma's from the data for simple csv parsing.
         # Append 'trackData' to list 'allData'
         allData.append(trackData)
-allDataClean = ''.join(allData).replace('""', '')
-print((allDataClean))
-with open(playlistID + '.csv', 'w', newline='') as csvfile:
-    songwriter = csv.writer(csvfile, delimiter=',')
-    songwriter.writerow(allData)
+
+pprint.pprint(allData)
+
+with open(playlistID + '.csv', 'w', newline='') as csvFile:
+    write = csv.writer(csvFile)
+
+    write.writerow(fields)
+    write.writerows(allData)
+
 
 """
 for artist in playlist_data['tracks']['items']:
