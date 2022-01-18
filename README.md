@@ -12,7 +12,8 @@ Grab the playlist ID
 
 
 ![Screenshot 2022-01-18 111245](https://user-images.githubusercontent.com/73445952/149975869-5ae46164-236b-46f5-9f64-078a8d5bb8a1.png)
-insert the playlist id.
+
+Insert the playlist id.
 
 
 Once you hit enter the program will creat a csv file with all of the content from that playlist!
@@ -22,4 +23,4 @@ Once you hit enter the program will creat a csv file with all of the content fro
 # Fixes
 1. CSV file naming/creation to not replace the old file.
 2. Playlist ID retrieval from users personal playlist selections using GUI
-3. 
+
