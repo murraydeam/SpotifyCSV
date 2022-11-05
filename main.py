@@ -35,7 +35,8 @@ class PlaylistCSV:
         data = {}
 
         # The Requests message
-        message = f'{client_id}:{client_secret}'  # formatted for ease while converting to BASE64
+        # formatted for ease while converting to BASE64
+        message = f'{client_id}:{client_secret}'
 
         # Encoding message BASE64
         messageBytes = message.encode('ascii')
@@ -58,7 +59,8 @@ class PlaylistCSV:
         # Step 2 - Use Access Token to call playlist endpoint
 
         # playlistId = "0dc6pAFmZfOCyQ6u0pC91Y"  # **Streamline for ease of use**
-        playlistId = input('Please enter you playlist ID: ')
+        playlistId = input(
+            'There is currently a max playlist size of 62. \nPlease enter you playlist ID: ')
 
         if playlistId == '':
             print('\nShoot an Email to dmurray@brinkshome.com '
